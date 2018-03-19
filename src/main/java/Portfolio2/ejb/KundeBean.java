@@ -10,8 +10,7 @@
 package Portfolio2.ejb;
 
 import Portfolio2.jpa.Kunde;
-import java.util.Date;
-import java.util.List;
+import Portfolio2.jpa.Leihvertrag;
 import javax.ejb.Stateless;
 
 /**
@@ -24,14 +23,6 @@ public class KundeBean extends EntityBean<Kunde, Long> {
         super(Kunde.class);
     }
     
-    public List<Kunde> findByStartBetween(Date startTimeFrom, Date startTimeTo) {
-        
-        return em.createQuery("SELECT p FROM Program p"
-                            + "    WHERE p.startTime >= :startTimeFrom"
-                            + "      AND p.startTime <= :startTimeTo"
-                            + "    ORDER BY p.startTime, p.name")
-                 .setParameter("startTimeFrom", startTimeFrom)
-                 .setParameter("startTimeTo", startTimeTo)
-                 .getResultList();
-    }
+    
+   
 }

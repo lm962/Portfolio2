@@ -9,6 +9,7 @@
  */
 package Portfolio2.ejb;
 
+import Portfolio2.jpa.Kunde;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -50,7 +51,6 @@ public abstract class EntityBean<Entity, EntityId> {
         if (id == null) {
             return null;
         }
-        
         return em.find(entityClass, id);
     }
 
@@ -61,6 +61,12 @@ public abstract class EntityBean<Entity, EntityId> {
     public List<Entity> findAll() {
         String select = "SELECT e FROM $E e".replace("$E", this.entityClass.getName());
         return em.createQuery(select).getResultList();
+    }
+    
+    public List<Entity> findByName(Kunde kunde) {
+        String select = "SELECT e FROM Kunde e WHERE name LIKE :kunde.nachname" ;
+        return em.createQuery(select).setParameter("kunde", kunde).getResultList();
+
     }
 
     /**

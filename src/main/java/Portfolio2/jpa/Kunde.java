@@ -10,13 +10,8 @@
 package Portfolio2.jpa;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  * Entity-Klasse für eine Sendung
@@ -25,8 +20,7 @@ import javax.validation.constraints.Size;
 public class Kunde implements Serializable {
     
     @Id
-    private long id;          
-    private String name;   
+    private long KundeId;            
     private String vorname;
     private String nachname;  
     private String strasse;    
@@ -35,24 +29,17 @@ public class Kunde implements Serializable {
     private String ort; 
     private String land;
     
-    @NotNull
-    @Size(min = 1)
-    private String description = "";
+    //@OneToMany
+    //private Leihvertrag leihvertrag;
     
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date startTime = new Date();
-    
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date endTime = new Date();
     
     //<editor-fold defaultstate="collapsed" desc="Konstruktoren">
 
     public Kunde() {
     }
 
-    public Kunde(long id, String name, String vorname, String nachname, String strasse, String hausnr, String plz, String ort, String land) {
-        this.id = id;
-        this.name = name;
+    public Kunde(long KundeId, String vorname, String nachname, String strasse, String hausnr, String plz, String ort, String land) {
+        this.KundeId = KundeId;
         this.vorname = vorname;
         this.nachname = nachname;
         this.strasse = strasse;
@@ -66,22 +53,12 @@ public class Kunde implements Serializable {
 
     //<editor-fold defaultstate="collapsed" desc="Setter und Getter">
     
-    //</editor-fold>
-
-    public long getId() {
-        return id;
+    public long getKundeId() {
+        return KundeId;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setKundeId(long KundeId) {
+        this.KundeId = KundeId;
     }
 
     public String getVorname() {
@@ -140,28 +117,6 @@ public class Kunde implements Serializable {
         this.land = land;
     }
 
-    public String getDescription() {
-        return description;
-    }
+    //</editor-fold>
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Date getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-
-    public Date getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
-    
 }
